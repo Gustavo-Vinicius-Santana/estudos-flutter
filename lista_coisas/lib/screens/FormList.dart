@@ -13,11 +13,29 @@ class Formlist extends StatefulWidget {
 class _FormlistState extends State<Formlist> {
   final TextEditingController _textController = TextEditingController();
   List<String> items = [];
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController.addListener(() {
+      if (errorMessage != null) {
+        setState(() {
+          errorMessage = null;
+        });
+      }
+    });
+  }
 
   void _addItemToList() {
     setState(() {
-      items.add(_textController.text);
-      _textController.clear();
+      if (_textController.text.isNotEmpty) {
+        items.add(_textController.text);
+        _textController.clear();
+        errorMessage = null;
+      } else {
+        errorMessage = 'Preencha esse campo.';
+      }
     });
   }
 
@@ -33,7 +51,10 @@ class _FormlistState extends State<Formlist> {
         child: Column(
           children: [
             const Text('TELA DE LISTA DE PESSOAS COM FORMULARIO'),
-            InputText(controller: _textController),
+            InputText(
+              controller: _textController,
+              errorMessageLength: errorMessage,
+            ),
             const SizedBox(height: 20),
             Buttonsubmit(actionButton: _addItemToList),
             Listthings(itemsList: items),
