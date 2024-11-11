@@ -55,7 +55,6 @@ class _FormlistState extends State<Formlist> {
               controller: _textController,
               errorMessageLength: errorMessage,
             ),
-            const SizedBox(height: 20),
             Buttonsubmit(actionButton: _addItemToList),
             Listthings(itemsList: items),
           ],
