@@ -46,13 +46,14 @@ class _ListthingsState extends State<Listthings> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 250,
+      height: 400,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: widget.itemsList.length,
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
-            width: 150,
+            width: 250,
             child: ListTile(
               leading: Icon(Icons.label),
               title: Text(widget.itemsList[index]),
