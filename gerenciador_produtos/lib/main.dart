@@ -45,9 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _selectedIndex = 1;
 
-  // Lista de widgets das telas
-  late List<Widget> _screens;
-
   @override
   void initState() {
     super.initState();
@@ -66,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
   }
+
+  // Lista de widgets das telas
+  late List<Widget> _screens;
 
   @override
   Widget build(BuildContext context) {
