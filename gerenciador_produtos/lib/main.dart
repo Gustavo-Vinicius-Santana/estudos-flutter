@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       home: MyHomePage(),
     );
@@ -20,22 +20,47 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Lista de produtos
+  final List<Map<String, dynamic>> listMainAllProducts = [
+    {
+      'nome': 'teste',
+      'preco': 50.0,
+      'quantidade': 2,
+      'descricao': 'descrição teste'
+    },
+    {
+      'nome': 'produto 2',
+      'preco': 75.0,
+      'quantidade': 1,
+      'descricao': 'Descrição teste'
+    },
+  ];
+
   int _selectedIndex = 1;
 
   // Lista de widgets das telas
-  static const List<Widget> _screens = <Widget>[
-    Registerproduct(),
-    Listproduct(),
-    DashboardScrren(),
-  ];
+  late List<Widget> _screens;
 
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      Registerproduct(),
+      Listproduct(
+        listAllProducts: listMainAllProducts,
+      ),
+      DashboardScrren(),
+    ];
+  }
+
+  // Index de uma tela
   void _onItemSelected(int index) {
     setState(() {
       _selectedIndex = index;
