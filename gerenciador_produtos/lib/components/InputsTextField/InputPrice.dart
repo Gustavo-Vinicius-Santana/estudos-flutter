@@ -16,6 +16,8 @@ class _InputPriceState extends State<InputPrice> {
       child: TextFormField(
         decoration: InputDecoration(
           labelText: 'PREÇO',
+          hintText: '50.00',
+          hintStyle: const TextStyle(color: Colors.grey),
           prefix: const Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Text(

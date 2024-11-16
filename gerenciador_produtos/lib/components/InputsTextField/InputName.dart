@@ -38,7 +38,7 @@ class _InputNameState extends State<InputName> {
         maxLength: 20,
         decoration: InputDecoration(
           labelText: 'NOME',
-          hintText: 'Digite um nome',
+          hintText: 'Digite o nome do produto',
           hintStyle: const TextStyle(color: Colors.grey),
           counterText: '$_charCount/20',
           floatingLabelBehavior: FloatingLabelBehavior.always,

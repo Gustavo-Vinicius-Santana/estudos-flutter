@@ -16,6 +16,8 @@ class _InputQtdState extends State<InputQtd> {
       child: TextFormField(
         decoration: InputDecoration(
           labelText: 'QUANTIDADE',
+          hintText: '100',
+          hintStyle: const TextStyle(color: Colors.grey),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: const TextStyle(
             fontSize: 16,
