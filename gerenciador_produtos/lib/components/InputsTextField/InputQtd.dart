@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputQtd extends StatefulWidget {
   const InputQtd({super.key});
@@ -29,6 +30,10 @@ class _InputQtdState extends State<InputQtd> {
             borderSide: BorderSide(color: Colors.black, width: 2),
           ),
         ),
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')),
+        ],
       ),
     );
   }
