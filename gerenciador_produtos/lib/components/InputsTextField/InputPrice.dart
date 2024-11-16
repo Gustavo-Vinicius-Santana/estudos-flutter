@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputPrice extends StatefulWidget {
   const InputPrice({super.key});
@@ -38,6 +39,10 @@ class _InputPriceState extends State<InputPrice> {
             borderSide: BorderSide(color: Colors.black, width: 2),
           ),
         ),
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^-?[0-9]+(\.[0-9]*)?$')),
+        ],
       ),
     );
   }
