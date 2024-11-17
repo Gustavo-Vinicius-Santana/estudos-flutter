@@ -3,6 +3,7 @@ import 'package:projeto_android/components/InputsTextField/InputName.dart';
 import 'package:projeto_android/components/Buttons/ButtonRegister.dart';
 import 'package:projeto_android/components/InputsTextField/InputPrice.dart';
 import 'package:projeto_android/components/InputsTextField/InputQtd.dart';
+import 'package:projeto_android/components/messages/TopSnackBar.dart';
 
 class Registerproduct extends StatefulWidget {
   const Registerproduct({super.key});
@@ -75,6 +76,8 @@ class _RegisterproductState extends State<Registerproduct> {
       setState(() {
         messageErrorInputQtd = 'Preencha esse campo.';
       });
+    } else {
+      showTopSnackBar(context, "Produto cadastrado com sucesso!");
     }
   }
 
