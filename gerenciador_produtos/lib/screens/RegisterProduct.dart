@@ -66,15 +66,15 @@ class _RegisterproductState extends State<Registerproduct> {
   void _registerProduct() {
     if (_textController.text.isEmpty) {
       setState(() {
-        messageErrorInputText = 'Preencha esse campo.';
+        messageErrorInputText = 'campo obrigatório.';
       });
     } else if (_priceController.text.isEmpty) {
       setState(() {
-        messageErrorInputPrice = 'Preencha esse campo.';
+        messageErrorInputPrice = 'campo obrigatório.';
       });
     } else if (_qtdController.text.isEmpty) {
       setState(() {
-        messageErrorInputQtd = 'Preencha esse campo.';
+        messageErrorInputQtd = 'campo obrigatório.';
       });
     } else {
       showTopSnackBar(context, "Produto cadastrado com sucesso!");
