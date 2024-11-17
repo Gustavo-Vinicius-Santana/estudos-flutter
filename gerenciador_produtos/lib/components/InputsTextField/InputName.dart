@@ -40,8 +40,16 @@ class _InputNameState extends State<InputName> {
         decoration: InputDecoration(
           labelText: 'NOME',
           hintText: 'Digite o nome do produto',
-          error:
-              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
+          error: widget.errorMessage != null
+              ? Text(
+                  widget.errorMessage!,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : null,
           hintStyle: const TextStyle(color: Colors.grey),
           counterText: '$_charCount/20',
           floatingLabelBehavior: FloatingLabelBehavior.always,

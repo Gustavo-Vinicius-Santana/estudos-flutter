@@ -20,8 +20,16 @@ class _InputQtdState extends State<InputQtd> {
         decoration: InputDecoration(
           labelText: 'QUANTIDADE',
           hintText: '100',
-          error:
-              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
+          error: widget.errorMessage != null
+              ? Text(
+                  widget.errorMessage!,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : null,
           hintStyle: const TextStyle(color: Colors.grey),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: const TextStyle(

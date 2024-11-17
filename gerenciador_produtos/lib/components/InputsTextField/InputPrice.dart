@@ -20,8 +20,16 @@ class _InputPriceState extends State<InputPrice> {
         decoration: InputDecoration(
           labelText: 'PREÇO',
           hintText: '50.00',
-          error:
-              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
+          error: widget.errorMessage != null
+              ? Text(
+                  widget.errorMessage!,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : null,
           hintStyle: const TextStyle(color: Colors.grey),
           prefix: const Padding(
             padding: EdgeInsets.only(right: 8.0),

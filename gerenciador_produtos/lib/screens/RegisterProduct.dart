@@ -40,6 +40,18 @@ class _RegisterproductState extends State<Registerproduct> {
         errorMessage = null;
       });
     }
+
+    setState(() {
+      if (_textController.text.isNotEmpty) {
+        messageErrorInputText = null;
+      }
+      if (_priceController.text.isNotEmpty) {
+        messageErrorInputPrice = null;
+      }
+      if (_qtdController.text.isNotEmpty) {
+        messageErrorInputQtd = null;
+      }
+    });
   }
 
   @override
