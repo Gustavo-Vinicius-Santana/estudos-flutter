@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputPrice extends StatefulWidget {
-  const InputPrice({super.key, required this.controller});
+  const InputPrice({super.key, required this.controller, this.errorMessage});
   final TextEditingController controller;
+  final String? errorMessage;
 
   @override
   State<InputPrice> createState() => _InputPriceState();
@@ -19,6 +20,8 @@ class _InputPriceState extends State<InputPrice> {
         decoration: InputDecoration(
           labelText: 'PREÇO',
           hintText: '50.00',
+          error:
+              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
           hintStyle: const TextStyle(color: Colors.grey),
           prefix: const Padding(
             padding: EdgeInsets.only(right: 8.0),

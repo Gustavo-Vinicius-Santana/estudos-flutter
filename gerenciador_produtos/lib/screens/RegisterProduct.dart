@@ -16,6 +16,32 @@ class _RegisterproductState extends State<Registerproduct> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _qtdController = TextEditingController();
 
+  String? messageErrorInputText;
+  String? messageErrorInputPrice;
+  String? messageErrorInputQtd;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController.addListener(() {
+      _clearErrorMessage(messageErrorInputText);
+    });
+    _priceController.addListener(() {
+      _clearErrorMessage(messageErrorInputPrice);
+    });
+    _qtdController.addListener(() {
+      _clearErrorMessage(messageErrorInputQtd);
+    });
+  }
+
+  void _clearErrorMessage(String? errorMessage) {
+    if (errorMessage != null) {
+      setState(() {
+        errorMessage = null;
+      });
+    }
+  }
+
   @override
   void dispose() {
     _textController.dispose();

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputQtd extends StatefulWidget {
-  const InputQtd({super.key, required this.controller});
+  const InputQtd({super.key, required this.controller, this.errorMessage});
   final TextEditingController controller;
+  final String? errorMessage;
 
   @override
   State<InputQtd> createState() => _InputQtdState();
@@ -19,6 +20,8 @@ class _InputQtdState extends State<InputQtd> {
         decoration: InputDecoration(
           labelText: 'QUANTIDADE',
           hintText: '100',
+          error:
+              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
           hintStyle: const TextStyle(color: Colors.grey),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: const TextStyle(

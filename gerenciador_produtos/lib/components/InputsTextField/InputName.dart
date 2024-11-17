@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputName extends StatefulWidget {
-  const InputName({super.key, required this.controller});
+  const InputName({super.key, required this.controller, this.errorMessage});
   final TextEditingController controller;
+  final String? errorMessage;
 
   @override
   State<InputName> createState() => _InputNameState();
@@ -39,6 +40,8 @@ class _InputNameState extends State<InputName> {
         decoration: InputDecoration(
           labelText: 'NOME',
           hintText: 'Digite o nome do produto',
+          error:
+              widget.errorMessage != null ? Text(widget.errorMessage!) : null,
           hintStyle: const TextStyle(color: Colors.grey),
           counterText: '$_charCount/20',
           floatingLabelBehavior: FloatingLabelBehavior.always,
