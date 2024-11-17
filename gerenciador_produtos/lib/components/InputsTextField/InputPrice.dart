@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputPrice extends StatefulWidget {
-  const InputPrice({super.key});
+  const InputPrice({super.key, required this.controller});
+  final TextEditingController controller;
 
   @override
   State<InputPrice> createState() => _InputPriceState();
@@ -14,6 +15,7 @@ class _InputPriceState extends State<InputPrice> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.3,
       child: TextFormField(
+        controller: widget.controller,
         decoration: InputDecoration(
           labelText: 'PREÇO',
           hintText: '50.00',

@@ -13,10 +13,14 @@ class Registerproduct extends StatefulWidget {
 
 class _RegisterproductState extends State<Registerproduct> {
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _qtdController = TextEditingController();
 
   @override
   void dispose() {
-    _textController.dispose(); // Libera recursos do controlador
+    _textController.dispose();
+    _priceController.dispose();
+    _qtdController.dispose();
     super.dispose();
   }
 
@@ -36,16 +40,14 @@ class _RegisterproductState extends State<Registerproduct> {
               padding: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.1,
               ),
-              child: InputName(
-                controller: _textController,
-              ),
+              child: InputName(controller: _textController),
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InputPrice(),
-                InputQtd(),
+                InputPrice(controller: _priceController),
+                InputQtd(controller: _qtdController),
               ],
             ),
             const SizedBox(height: 20),

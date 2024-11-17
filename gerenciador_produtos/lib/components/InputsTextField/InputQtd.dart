@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputQtd extends StatefulWidget {
-  const InputQtd({super.key});
+  const InputQtd({super.key, required this.controller});
+  final TextEditingController controller;
 
   @override
   State<InputQtd> createState() => _InputQtdState();
@@ -14,6 +15,7 @@ class _InputQtdState extends State<InputQtd> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.3,
       child: TextFormField(
+        controller: widget.controller,
         decoration: InputDecoration(
           labelText: 'QUANTIDADE',
           hintText: '100',
