@@ -50,6 +50,22 @@ class _RegisterproductState extends State<Registerproduct> {
     super.dispose();
   }
 
+  void _registerProduct() {
+    if (_textController.text.isEmpty) {
+      setState(() {
+        messageErrorInputText = 'Preencha esse campo.';
+      });
+    } else if (_priceController.text.isEmpty) {
+      setState(() {
+        messageErrorInputPrice = 'Preencha esse campo.';
+      });
+    } else if (_qtdController.text.isEmpty) {
+      setState(() {
+        messageErrorInputQtd = 'Preencha esse campo.';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,19 +82,29 @@ class _RegisterproductState extends State<Registerproduct> {
               padding: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.1,
               ),
-              child: InputName(controller: _textController),
+              child: InputName(
+                  controller: _textController,
+                  errorMessage: messageErrorInputText),
             ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InputPrice(controller: _priceController),
-                InputQtd(controller: _qtdController),
+                InputPrice(
+                  controller: _priceController,
+                  errorMessage: messageErrorInputPrice,
+                ),
+                InputQtd(
+                  controller: _qtdController,
+                  errorMessage: messageErrorInputQtd,
+                ),
               ],
             ),
             const SizedBox(height: 20),
-            const Center(
-              child: ButtonRegister(),
+            Center(
+              child: ButtonRegister(
+                register: _registerProduct,
+              ),
             ),
           ],
         ),
