@@ -49,7 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _screens = [
-      Registerproduct(),
+      Registerproduct(
+        listAllProducts: listMainAllProducts,
+      ),
       Listproduct(
         listAllProducts: listMainAllProducts,
       ),
