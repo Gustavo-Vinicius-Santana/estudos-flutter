@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_android/components/InputsTextField/InputName.dart';
+import 'package:projeto_android/components/InputsTextField/InputDesc.dart';
 import 'package:projeto_android/components/Buttons/ButtonRegister.dart';
 import 'package:projeto_android/components/InputsTextField/InputPrice.dart';
 import 'package:projeto_android/components/InputsTextField/InputQtd.dart';
@@ -15,10 +16,12 @@ class Registerproduct extends StatefulWidget {
 
 class _RegisterproductState extends State<Registerproduct> {
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _qtdController = TextEditingController();
 
   String? messageErrorInputText;
+  String? messageErrorInputDesc;
   String? messageErrorInputPrice;
   String? messageErrorInputQtd;
 
@@ -27,6 +30,9 @@ class _RegisterproductState extends State<Registerproduct> {
     super.initState();
     _textController.addListener(() {
       _clearErrorMessage(messageErrorInputText);
+    });
+    _descController.addListener(() {
+      _clearErrorMessage(messageErrorInputDesc);
     });
     _priceController.addListener(() {
       _clearErrorMessage(messageErrorInputPrice);
@@ -53,6 +59,9 @@ class _RegisterproductState extends State<Registerproduct> {
       if (_qtdController.text.isNotEmpty) {
         messageErrorInputQtd = null;
       }
+      if (_descController.text.isNotEmpty) {
+        messageErrorInputDesc = null;
+      }
     });
   }
 
@@ -69,6 +78,10 @@ class _RegisterproductState extends State<Registerproduct> {
       setState(() {
         messageErrorInputText = 'campo obrigatório.';
       });
+    } else if (_descController.text.isEmpty) {
+      setState(() {
+        messageErrorInputDesc = 'campo obrigatório.';
+      });
     } else if (_priceController.text.isEmpty) {
       setState(() {
         messageErrorInputPrice = 'campo obrigatório.';
@@ -83,7 +96,7 @@ class _RegisterproductState extends State<Registerproduct> {
         'nome': _textController.text,
         'preco': double.parse(_priceController.text),
         'quantidade': int.parse(_qtdController.text),
-        'descricao': '',
+        'descricao': _descController.text,
       });
       print(widget.listAllProducts);
     }
@@ -108,6 +121,16 @@ class _RegisterproductState extends State<Registerproduct> {
               child: InputName(
                   controller: _textController,
                   errorMessage: messageErrorInputText),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.1,
+              ),
+              child: InputDesc(
+                controller: _descController,
+                errorMessage: messageErrorInputDesc,
+              ),
             ),
             const SizedBox(height: 20),
             Row(
