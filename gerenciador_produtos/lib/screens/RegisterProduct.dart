@@ -94,6 +94,10 @@ class _RegisterproductState extends State<Registerproduct> {
         'quantidade': int.parse(qtd),
         'descricao': desc,
       });
+      _textController.clear();
+      _descController.clear();
+      _priceController.clear();
+      _qtdController.clear();
     }
   }
 
