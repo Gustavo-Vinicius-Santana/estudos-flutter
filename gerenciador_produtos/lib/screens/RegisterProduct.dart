@@ -74,31 +74,26 @@ class _RegisterproductState extends State<Registerproduct> {
   }
 
   void _registerProduct() {
-    if (_textController.text.isEmpty) {
+    final text = _textController.text;
+    final desc = _descController.text;
+    final price = _priceController.text;
+    final qtd = _qtdController.text;
+
+    if (text.isEmpty || desc.isEmpty || price.isEmpty || qtd.isEmpty) {
       setState(() {
-        messageErrorInputText = 'campo obrigatório.';
-      });
-    } else if (_descController.text.isEmpty) {
-      setState(() {
-        messageErrorInputDesc = 'campo obrigatório.';
-      });
-    } else if (_priceController.text.isEmpty) {
-      setState(() {
-        messageErrorInputPrice = 'campo obrigatório.';
-      });
-    } else if (_qtdController.text.isEmpty) {
-      setState(() {
-        messageErrorInputQtd = 'campo obrigatório.';
+        messageErrorInputText = text.isEmpty ? 'campo obrigatório.' : null;
+        messageErrorInputDesc = desc.isEmpty ? 'campo obrigatório.' : null;
+        messageErrorInputPrice = price.isEmpty ? 'campo obrigatório.' : null;
+        messageErrorInputQtd = qtd.isEmpty ? 'campo obrigatório.' : null;
       });
     } else {
       showTopSnackBar(context, "Produto cadastrado com sucesso!");
       widget.listAllProducts.add({
-        'nome': _textController.text,
-        'preco': double.parse(_priceController.text),
-        'quantidade': int.parse(_qtdController.text),
-        'descricao': _descController.text,
+        'nome': text,
+        'preco': double.parse(price),
+        'quantidade': int.parse(qtd),
+        'descricao': desc,
       });
-      print(widget.listAllProducts);
     }
   }
 
