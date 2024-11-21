@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_android/components/Messages/OptionBottomSheet.dart';
 
 class Listsproducts extends StatefulWidget {
   const Listsproducts({super.key, required this.mainList});
@@ -10,6 +11,24 @@ class Listsproducts extends StatefulWidget {
 }
 
 class _ListsproductsState extends State<Listsproducts> {
+  void _showOptions(
+      BuildContext context, Map<String, dynamic> item, int index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return OptionsBottomSheet(
+          item: item,
+          onEdit: () {
+            print("deletar item: ${item['nome']}");
+          },
+          onDelete: () {
+            print("editar item: ${item['nome']}");
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,53 +36,59 @@ class _ListsproductsState extends State<Listsproducts> {
         itemCount: widget.mainList.length,
         itemBuilder: (context, index) {
           final produto = widget.mainList[index];
-          return ExpansionTile(
-            title: Text(
-              produto['nome'],
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+          return GestureDetector(
+            onLongPress: () {
+              print('-----------MENSAGE LONG PRESS-----------');
+              _showOptions(context, produto, index);
+            },
+            child: ExpansionTile(
+              title: Text(
+                produto['nome'],
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            subtitle: Text(
-              'Preço: R\$ ${produto['preco'].toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.green, // Alterando a cor do preço
+              subtitle: Text(
+                'Preço: R\$ ${produto['preco'].toStringAsFixed(2)}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.green, // Alterando a cor do preço
+                ),
               ),
-            ),
-            leading: const Icon(Icons.shopping_bag),
-            children: [
-              ListTile(
-                  title: Row(
-                children: [
-                  const Text(
-                    'Quantidade:',
+              leading: const Icon(Icons.shopping_bag),
+              children: [
+                ListTile(
+                    title: Row(
+                  children: [
+                    const Text(
+                      'Quantidade:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      '${produto['quantidade']}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.blue,
+                      ),
+                    )
+                  ],
+                )),
+                ListTile(
+                  title: const Text(
+                    'Descrição: ',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w600, // Título em negrito
                     ),
                   ),
-                  Text(
-                    '${produto['quantidade']}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.blue,
-                    ),
-                  )
-                ],
-              )),
-              ListTile(
-                title: const Text(
-                  'Descrição: ',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600, // Título em negrito
-                  ),
+                  subtitle: Text(produto['descricao']),
                 ),
-                subtitle: Text(produto['descricao']),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
