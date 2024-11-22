@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_android/components/Lists/ListsProducts.dart';
+import 'package:projeto_android/screens/EditProduct.dart';
 
 class Listproduct extends StatefulWidget {
   const Listproduct({super.key, required this.listAllProducts});
@@ -16,6 +17,15 @@ class _ListproductState extends State<Listproduct> {
     });
   }
 
+  _onEditItem(BuildContext context, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const EditProduct(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +40,7 @@ class _ListproductState extends State<Listproduct> {
           Listsproducts(
             mainList: widget.listAllProducts,
             deleteItem: _onDeleteItem,
+            editItem: _onEditItem,
           ),
         ],
       ),

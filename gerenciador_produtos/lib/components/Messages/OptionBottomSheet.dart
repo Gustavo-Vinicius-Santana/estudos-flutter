@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class OptionsBottomSheet extends StatelessWidget {
   final Map<String, dynamic> item;
-  final VoidCallback onEdit;
+  final Function onEdit;
   final VoidCallback onDelete;
 
   const OptionsBottomSheet({
@@ -34,8 +34,8 @@ class OptionsBottomSheet extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  onEdit();
                   Navigator.of(context).pop();
+                  onEdit();
                 },
                 child: const Text(
                   'Editar',

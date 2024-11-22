@@ -3,10 +3,14 @@ import 'package:projeto_android/components/Messages/OptionBottomSheet.dart';
 
 class Listsproducts extends StatefulWidget {
   const Listsproducts(
-      {super.key, required this.mainList, required this.deleteItem});
+      {super.key,
+      required this.mainList,
+      required this.deleteItem,
+      required this.editItem});
 
   final List mainList;
   final Function deleteItem;
+  final Function editItem;
 
   @override
   State<Listsproducts> createState() => _ListsproductsState();
@@ -21,6 +25,7 @@ class _ListsproductsState extends State<Listsproducts> {
         return OptionsBottomSheet(
           item: item,
           onEdit: () {
+            widget.editItem(context, index);
             print("deletar item: ${item['nome']}");
           },
           onDelete: () {
