@@ -24,7 +24,7 @@ class OptionsBottomSheet extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  onEdit();
+                  onDelete();
                   Navigator.of(context).pop();
                 },
                 child: const Text(
@@ -34,7 +34,7 @@ class OptionsBottomSheet extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  onDelete();
+                  onEdit();
                   Navigator.of(context).pop();
                 },
                 child: const Text(

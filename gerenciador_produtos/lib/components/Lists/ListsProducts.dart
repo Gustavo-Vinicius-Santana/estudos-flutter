@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:projeto_android/components/Messages/OptionBottomSheet.dart';
 
 class Listsproducts extends StatefulWidget {
-  const Listsproducts({super.key, required this.mainList});
+  const Listsproducts(
+      {super.key, required this.mainList, required this.deleteItem});
 
   final List mainList;
+  final Function deleteItem;
 
   @override
   State<Listsproducts> createState() => _ListsproductsState();
@@ -22,6 +24,7 @@ class _ListsproductsState extends State<Listsproducts> {
             print("deletar item: ${item['nome']}");
           },
           onDelete: () {
+            widget.deleteItem(index);
             print("editar item: ${item['nome']}");
           },
         );

@@ -10,6 +10,12 @@ class Listproduct extends StatefulWidget {
 }
 
 class _ListproductState extends State<Listproduct> {
+  _onDeleteItem(int index) {
+    setState(() {
+      widget.listAllProducts.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +27,10 @@ class _ListproductState extends State<Listproduct> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Listsproducts(mainList: widget.listAllProducts),
+          Listsproducts(
+            mainList: widget.listAllProducts,
+            deleteItem: _onDeleteItem,
+          ),
         ],
       ),
     );
