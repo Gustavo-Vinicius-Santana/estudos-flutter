@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_android/components/Buttons/ButtonRegister.dart';
+import 'package:projeto_android/components/Buttons/ButtonAction.dart';
 import 'package:projeto_android/components/InputsTextField/InputDesc.dart';
 import 'package:projeto_android/components/InputsTextField/InputName.dart';
 import 'package:projeto_android/components/InputsTextField/InputPrice.dart';
 import 'package:projeto_android/components/InputsTextField/InputQtd.dart';
-import 'package:projeto_android/components/Messages/TopSnackBar.dart';
 
 class EditProduct extends StatefulWidget {
   const EditProduct(
-      {super.key, required this.product, required this.listAllProducts});
-  final List listAllProducts;
+      {super.key,
+      required this.product,
+      required this.onEditProduct,
+      required this.index});
   final Map<String, dynamic> product;
+  final Function onEditProduct;
+  final int index;
 
   @override
   State<EditProduct> createState() => _EditProductState();
@@ -80,7 +83,7 @@ class _EditProductState extends State<EditProduct> {
     super.dispose();
   }
 
-  void _registerProduct() {
+  void _edictItem() {
     final text = _textController.text;
     final desc = _descController.text;
     final price = _priceController.text;
@@ -94,17 +97,16 @@ class _EditProductState extends State<EditProduct> {
         messageErrorInputQtd = qtd.isEmpty ? 'campo obrigatório.' : null;
       });
     } else {
-      showTopSnackBar(context, "Produto cadastrado com sucesso!");
-      widget.listAllProducts.add({
+      Map<String, dynamic> itemEdit = {
         'nome': text,
         'preco': double.parse(price),
         'quantidade': int.parse(qtd),
         'descricao': desc,
-      });
-      _textController.clear();
-      _descController.clear();
-      _priceController.clear();
-      _qtdController.clear();
+      };
+
+      widget.onEditProduct(widget.index, itemEdit);
+
+      Navigator.pop(context);
     }
   }
 
@@ -159,8 +161,9 @@ class _EditProductState extends State<EditProduct> {
             ),
             const SizedBox(height: 20),
             Center(
-              child: ButtonRegister(
-                register: _registerProduct,
+              child: ButtonAction(
+                register: _edictItem,
+                textInButton: 'Editar Produto',
               ),
             ),
           ],

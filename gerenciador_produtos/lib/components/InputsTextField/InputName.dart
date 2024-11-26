@@ -15,6 +15,7 @@ class _InputNameState extends State<InputName> {
   @override
   void initState() {
     super.initState();
+    _charCount = widget.controller.text.length;
     widget.controller.addListener(_updateCharCounter);
   }
 
@@ -26,7 +27,7 @@ class _InputNameState extends State<InputName> {
 
   @override
   void dispose() {
-    widget.controller.removeListener(_updateCharCounter); // Remove o listener
+    widget.controller.removeListener(_updateCharCounter);
     super.dispose();
   }
 

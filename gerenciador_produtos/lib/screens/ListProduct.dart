@@ -17,14 +17,21 @@ class _ListproductState extends State<Listproduct> {
     });
   }
 
-  _onEditItem(BuildContext context, int index) {
+  void _onEditItem(int index, Map<String, dynamic> updatedValues) {
+    setState(() {
+      widget.listAllProducts[index] = updatedValues;
+    });
+  }
+
+  _openEditScreen(BuildContext context, int index) {
     final itemToEdit = widget.listAllProducts[index];
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => EditProduct(
           product: itemToEdit,
-          listAllProducts: widget.listAllProducts,
+          onEditProduct: _onEditItem,
+          index: index,
         ),
       ),
     );
@@ -44,7 +51,7 @@ class _ListproductState extends State<Listproduct> {
           Listsproducts(
             mainList: widget.listAllProducts,
             deleteItem: _onDeleteItem,
-            editItem: _onEditItem,
+            editItem: _openEditScreen,
           ),
         ],
       ),

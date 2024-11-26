@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_android/components/InputsTextField/InputName.dart';
 import 'package:projeto_android/components/InputsTextField/InputDesc.dart';
-import 'package:projeto_android/components/Buttons/ButtonRegister.dart';
+import 'package:projeto_android/components/Buttons/ButtonAction.dart';
 import 'package:projeto_android/components/InputsTextField/InputPrice.dart';
 import 'package:projeto_android/components/InputsTextField/InputQtd.dart';
 import 'package:projeto_android/components/messages/TopSnackBar.dart';
@@ -147,8 +147,9 @@ class _RegisterproductState extends State<Registerproduct> {
             ),
             const SizedBox(height: 20),
             Center(
-              child: ButtonRegister(
+              child: ButtonAction(
                 register: _registerProduct,
+                textInButton: 'Cadastrar produto',
               ),
             ),
           ],
