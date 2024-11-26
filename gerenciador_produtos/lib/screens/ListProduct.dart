@@ -18,10 +18,14 @@ class _ListproductState extends State<Listproduct> {
   }
 
   _onEditItem(BuildContext context, int index) {
+    final itemToEdit = widget.listAllProducts[index];
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const EditProduct(),
+        builder: (context) => EditProduct(
+          product: itemToEdit,
+          listAllProducts: widget.listAllProducts,
+        ),
       ),
     );
   }
