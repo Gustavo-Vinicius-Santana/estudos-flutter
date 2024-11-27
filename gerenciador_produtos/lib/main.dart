@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_android/screens/DashBoard.dart';
 import 'package:projeto_android/screens/ListProduct.dart';
 import 'package:projeto_android/screens/RegisterProduct.dart';
+import 'package:projeto_android/services/ProductService.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,46 +28,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // Lista de produtos
-  final List<Map<String, dynamic>> listMainAllProducts = [
-    {
-      'nome': 'teste',
-      'preco': 50.0,
-      'quantidade': 2,
-      'descricao': 'descrição teste'
-    },
-    {
-      'nome': 'produto 2',
-      'preco': 75.0,
-      'quantidade': 1,
-      'descricao': 'Descrição teste'
-    },
-  ];
-
   int _selectedIndex = 1;
+
+  ProductService productService = ProductService();
 
   @override
   void initState() {
     super.initState();
     _screens = [
       Registerproduct(
-        listAllProducts: listMainAllProducts,
+        registerProduct: productService.addProduct,
       ),
       Listproduct(
-        listAllProducts: listMainAllProducts,
+        products: productService.getProducts(),
+        onEditProduct: productService.editProduct,
+        onDeleteProduct: productService.deleteProduct,
       ),
       DashboardScrren(),
     ];
   }
 
-  // Index de uma tela
   void _onItemSelected(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  // Lista de widgets das telas
   late List<Widget> _screens;
 
   @override

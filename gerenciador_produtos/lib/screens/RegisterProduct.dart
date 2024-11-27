@@ -5,16 +5,18 @@ import 'package:projeto_android/components/Buttons/ButtonAction.dart';
 import 'package:projeto_android/components/InputsTextField/InputPrice.dart';
 import 'package:projeto_android/components/InputsTextField/InputQtd.dart';
 import 'package:projeto_android/components/messages/TopSnackBar.dart';
+import 'package:projeto_android/services/ProductService.dart';
 
 class Registerproduct extends StatefulWidget {
-  const Registerproduct({super.key, required this.listAllProducts});
-  final List listAllProducts;
-
+  const Registerproduct({super.key, required this.registerProduct});
+  final Function registerProduct;
   @override
   State<Registerproduct> createState() => _RegisterproductState();
 }
 
 class _RegisterproductState extends State<Registerproduct> {
+  final ProductService productService = ProductService();
+
   final TextEditingController _textController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -88,7 +90,7 @@ class _RegisterproductState extends State<Registerproduct> {
       });
     } else {
       showTopSnackBar(context, "Produto cadastrado com sucesso!");
-      widget.listAllProducts.add({
+      widget.registerProduct({
         'nome': text,
         'preco': double.parse(price),
         'quantidade': int.parse(qtd),
